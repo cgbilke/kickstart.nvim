@@ -80,18 +80,14 @@ If you experience any errors while trying to install kickstart, run `:checkhealt
 
 I hope you enjoy your Neovim journey,
 - TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
 -- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -102,7 +98,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -149,7 +145,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 15
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -539,7 +535,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -709,22 +705,10 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'folke/tokyonight.nvim',
-    priority = 1000, -- make sure to load this before all the other start plugins
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
-    end,
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -798,19 +782,16 @@ require('lazy').setup({
   -- put them in the right spots if you want.
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for kickstart
-  --
-  --  Here are some example plugins that I've included in the kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
