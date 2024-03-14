@@ -142,7 +142,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 15
@@ -709,6 +709,42 @@ require('lazy').setup({
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
+    opts = {
+      integrations = {
+        cmp = true,
+        dap = true,
+        dap_ui = true,
+        gitsigns = true,
+        treesitter = true,
+        mini = {
+          enabled = true,
+          indentscope_color = '',
+        },
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { 'italic' },
+            hints = { 'italic' },
+            warnings = { 'italic' },
+            information = { 'italic' },
+          },
+          underlines = {
+            errors = { 'underline' },
+            hints = { 'underline' },
+            warnings = { 'underline' },
+            information = { 'underline' },
+          },
+          inlay_hints = {
+            background = true,
+          },
+        },
+        which_key = true,
+      },
+      transparent_background = true,
+    },
+    init = function()
+      vim.cmd.colorscheme 'catppuccin'
+    end,
   },
 
   -- Highlight todo, notes, etc in comments
